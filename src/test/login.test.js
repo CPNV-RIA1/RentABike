@@ -32,7 +32,7 @@ test('log_user_in_failure', () => {
     //then
     expect(login.isLoggedIn()).toBe(false);
 })
-test('log_user_out', () => {
+test('log_user_out_success', () => {
     //given
     let login = new Login(global.FB.login());
     //when
