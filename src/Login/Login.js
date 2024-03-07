@@ -8,8 +8,12 @@ module.exports = class Login {
         this.login(loginRequest);
     }
     login(loginRequest) {
+
         try {
-            loginRequest.login();
+            //{ status: 'connected', authResponse: { accessToken: 'mockAccessToken' } }
+            if (loginRequest.status === 'connected' && loginRequest.authResponse.accessToken !== undefined) {
+
+            }
             this.isLoggedIn = true;
         }
         catch (e) {
