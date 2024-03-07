@@ -11,7 +11,7 @@ test('is_user_logged_in', () => {
     //given
     let login = new Login(global.FB.login());
     //when
-    let status = login.isLoggedIn();
+    let status = login.getLoginStatus();
     //then
     expect(status).toBe(true);
 
@@ -22,7 +22,7 @@ test('log_user_in_success', () => {
     //when
     login.login();
     //then
-    expect(login.isLoggedIn()).toBe(true);
+    expect(login.getLoginStatus()).toBe(true);
 })
 test('log_user_in_failure', () => {
     //given
@@ -30,7 +30,7 @@ test('log_user_in_failure', () => {
     //when
     login.login();
     //then
-    expect(login.isLoggedIn()).toBe(false);
+    expect(login.getLoginStatus()).toBe(false);
 })
 test('log_user_out_success', () => {
     //given
@@ -39,7 +39,7 @@ test('log_user_out_success', () => {
     login.login();
     login.logout();
     //then
-    expect(login.isLoggedIn()).toBe(false);
+    expect(login.getLoginStatus()).toBe(false);
 })
 
 
