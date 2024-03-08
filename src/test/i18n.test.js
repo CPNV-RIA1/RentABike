@@ -1,28 +1,27 @@
 describe('i18next language change', function() {
+    driver = new Builder().forBrowser('chrome').build();
+    driver.get('http://localhost:63342/RentABike/public_html/index.html');
     it('should maintain user-entered content', function() {
         //Given
-        var userInputField = document.getElementById('userName');
-        userInputField.value = 'John Doe';
-        var initialContent = userInputField.value;
+        driver.findElement(By.id('userName')).sendKeys("value", "John Doe");;
+        var initialContent = "John Doe";
 
         // When
-        var languageSelect = document.getElementById('languageSelect');
-        languageSelect.value = 'de';
-        languageSelect.dispatchEvent(new Event('change'));
+        driver.findElement(By.id("languageSelect")).selectByVisibleText("DE");
 
         // Then
-        expect(userInputField.value).toEqual(initialContent);
+        expect(userInputField.value).toEqual(driver.findElement(By.id('userName')).getAttribute('value'));
     });
 
     it('should maintain graphic element positioning', function() {
-        var initialGraphicElementPosition = document.getElementById('about').getBoundingClientRect();
+        //Given
+        var initialGraphicElementPosition = driver.findElement(By.id('about')).getBoundingClientRect();
 
-        var languageSelect = document.getElementById('languageSelect');
-        languageSelect.value = 'de';
-        languageSelect.dispatchEvent(new Event('change'));
+        // When
+        driver.findElement(By.id("languageSelect")).selectByVisibleText("DE");
+        var newGraphicElementPosition = driver.findElement(By.id('about')).getBoundingClientRect();
 
-        var newGraphicElementPosition = document.getElementById('about').getBoundingClientRect();
-
+        // Then
         expect(newGraphicElementPosition).toEqual(initialGraphicElementPosition);
     });
 });
