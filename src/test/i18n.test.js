@@ -1,16 +1,26 @@
+const {By, Builder,Select, Browser} = require('selenium-webdriver');
+const assert = require("assert");
+let driver;
+
 describe('i18next language change', function() {
     driver = new Builder().forBrowser('chrome').build();
     driver.get('http://localhost:63342/RentABike/public_html/index.html');
+    driver.manage().setTimeouts({implicit: 500});
+
     it('should maintain user-entered content', function() {
         //Given
-        driver.findElement(By.id('userName')).sendKeys("value", "John Doe");;
-        var initialContent = "John Doe";
+        let userInputElement = driver.findElement(By.id('userName'));
+        userInputElement.sendKeys("value", "John Doe");
+
+        let dropdownElement = driver.findElement(By.id('languageSelect'));
+        const dropdown = new Select(dropdownElement)
+        driver.manage().setTimeouts({implicit: 500});
 
         // When
-        driver.findElement(By.id("languageSelect")).selectByVisibleText("DE");
+        dropdown.selectByVisibleText("DE");
 
         // Then
-        expect(userInputField.value).toEqual(driver.findElement(By.id('userName')).getAttribute('value'));
+        expect(userInputElement.value).toEqual(driver.findElement(By.id('userName')).getAttribute('value'));
     });
 
     it('should maintain graphic element positioning', function() {
@@ -20,6 +30,8 @@ describe('i18next language change', function() {
         // When
         driver.findElement(By.id("languageSelect")).selectByVisibleText("DE");
         var newGraphicElementPosition = driver.findElement(By.id('about')).getBoundingClientRect();
+        driver.manage().setTimeouts({implicit: 500});
+
 
         // Then
         expect(newGraphicElementPosition).toEqual(initialGraphicElementPosition);
