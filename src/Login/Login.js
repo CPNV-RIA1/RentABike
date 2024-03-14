@@ -1,24 +1,46 @@
 "use strict";
 const FB = require('../test/Login/FB');
 const UndefinedLoginException = require('./UndefinedLoginException');
-
+const UnknowLoginException = require('./UnknownLoginException');
+const UnauthorizedLoginException = require('./UnauthorizedLoginException');
 module.exports = class Login {
     isLoggedIn;
     constructor() {
-        this.isLoggedIn = false;
     }
     login(loginRequest = new UndefinedLoginException()) {
-        if (loginRequest.status === 'connected' && loginRequest.authResponse.accessToken !== undefined) {
-            this.isLoggedIn = true;
-            return true;
-        }
-        else {
-            this.isLoggedIn = false;
-            return false;
+        switch (loginRequest.status) {
+            case 'connected':
+                if (loginRequest.authResponse.accessToken !== undefined) {
+                    return true;
+                }
+                else {
+                    throw new UndefinedLoginException();
+                }
+                break;
+            case 'not_authorized':
+                throw new UnauthorizedLoginException();
+                break;
+            case 'unknown':
+                throw new UnknowLoginException();
+                break;
+            default:
+                throw new UndefinedLoginException();
+                break;
         }
     }
     logout() {
     }
-    getLoginStatus() {
+    getLoginStatus(loginStatus = new UndefinedLoginException()) {
+        if (loginStatus.status === 'connected') {
+            if (loginStatus.authResponse.accessToken !== undefined) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
 }
