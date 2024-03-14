@@ -20,13 +20,13 @@ test('log_user_in_success', () => {
     //given
     let login = new Login(global.FB.login());
     //when
-    login.login();
+    login.login(global.FB.login());
     //then
     expect(login.getLoginStatus()).toBe(true);
 })
 test('log_user_in_failure', () => {
     //given
-    let login = new Login(global.FB.login());
+    let login = new Login();
     //when
     login.login();
     //then
