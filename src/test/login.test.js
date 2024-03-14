@@ -7,11 +7,12 @@ beforeAll(() => {
     global.FB = new FB();
 })
 
-test('is_user_logged_in', () => {
+test('is_user_logged_in_success', () => {
     //given
-    let login = new Login(global.FB.login());
+    let login = new Login();
+    login.login(global.FB.login());
     //when
-    let status = login.getLoginStatus();
+    let status = login.getLoginStatus(fb.getLoginStatus());
     //then
     expect(status).toBe(true);
 
