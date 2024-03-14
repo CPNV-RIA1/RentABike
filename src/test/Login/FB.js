@@ -9,11 +9,21 @@ module.exports = class FB {
         return { status: 'connected', authResponse: { accessToken: 'mockAccessToken' } };
     }
 
+    loginFailure(callback) {
+        this.isLoggedIn = false;
+        return { status: 'unknown' };
+    }
+
+    loginNotAuthorized(callback) {
+        this.isLoggedIn = false;
+        return { status: 'not_authorized' };
+    }
+
     logout(callback) {
         this.isLoggedIn = false;
     }
 
     getLoginStatus(callback) {
-        return this.isLoggedIn ? { status: 'connected', authResponse: { accessToken: 'mockAccessToken', expiresIn: '{unix-timestamp}', reauthorize_required_in: '{seconds-until-token-expires}', signedRequest: '{signed-parameter}', userID: '{user-id}' } } : { status: 'unknown' };
+        return { status: 'connected', authResponse: { accessToken: 'mockAccessToken' } };
     }
 }
