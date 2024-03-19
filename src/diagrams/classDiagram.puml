@@ -9,6 +9,11 @@ package model <<Frame>> {
   class i18next {
     + changeLanguage(lng, callback)
   }
+  class login {
+    + login()
+    + logout()
+    + getLoginStatus()
+  }
 }
 
 i18n <--> i18next
@@ -18,4 +23,9 @@ package view <<Frame>> {
 }
 i18n --> index
 
+package exception <<Frame>> {
+  class loginException {
+  }
+  class unauthorizedLoginException {
+  }
 @enduml
