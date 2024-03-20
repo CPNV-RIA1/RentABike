@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+package model <<Frame>> {
+  class i18n {
+    + translatePage()
+  }
+  class i18next {
+    + changeLanguage(lng, callback)
+  }
+  class login {
+    + login()
+    + logout()
+    + getLoginStatus()
+  }
+  package exception <<Frame>> {
+    class loginException {
+    }
+    class UnauthorizedLoginException {
+    }
+    class UndefinedLoginException {
+    }
+    class UnknownLoginException {
+    }
+  }
+}
+
+i18n <--> i18next
+package view <<Frame>> {
+    class index {
+    }
+    class loginForm {
+    }
+}
+i18n --> index
+
+package api <<Frame>> {
+  class FacebookSDK{}
+}
+loginException <|-- UnauthorizedLoginException
+loginException <|-- UndefinedLoginException
+loginException <|-- UnknownLoginException
+login ..> UnauthorizedLoginException
+login ..> UndefinedLoginException
+login ..> UnknownLoginException
+login --> FacebookSDK
+loginForm <-- login
+@enduml
