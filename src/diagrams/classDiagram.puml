@@ -30,6 +30,8 @@ i18n <--> i18next
 package view <<Frame>> {
     class index {
     }
+    class loginForm {
+    }
 }
 i18n --> index
 
@@ -43,4 +45,5 @@ login ..> UnauthorizedLoginException
 login ..> UndefinedLoginException
 login ..> UnknownLoginException
 login --> FacebookSDK
+loginForm <-- login
 @enduml
