@@ -38,9 +38,9 @@ php -S localhost:8000
 ├── package-lock.json
 ├── package.json
 ├── public_html
-│   ├── assets
-│   ├── components.html
-│   └── index.html
+│   ├── assets
+│   ├── components.html
+│   └── index.html
 └── src
     ├── i18n
     └── test
