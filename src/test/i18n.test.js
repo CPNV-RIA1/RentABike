@@ -23,17 +23,23 @@ describe('localisation language change', function() {
         expect(await userInputElement.getAttribute("value")).toEqual("John Doe");
     });
 
-    it('should maintain graphic element positioning', function() {
-        //Given
-        var initialGraphicElementPosition = driver.findElement(By.id('about')).getBoundingClientRect();
+    it('should maintain graphic element size when language is changed', async function() {
+        // Given
+        var initialGraphicElement = await driver.findElement(By.id('about'));
+        var initialGraphicElementWidth = await initialGraphicElement.getAttribute('clientWidth');
+        var initialGraphicElementHeight = await initialGraphicElement.getAttribute('clientHeight');
+        let dropdownElement = driver.findElement(By.id('languageSelect'));
+        const dropdown = new Select(dropdownElement)
 
         // When
-        driver.findElement(By.id("languageSelect")).selectByVisibleText("DE");
-        var newGraphicElementPosition = driver.findElement(By.id('about')).getBoundingClientRect();
-        driver.manage().setTimeouts({implicit: 500});
-
+        await dropdown.selectByVisibleText("DE");
+        await driver.manage().setTimeouts({implicit: 500});
+        var newGraphicElement = await driver.findElement(By.id('about'));
+        var newGraphicElementWidth = await newGraphicElement.getAttribute('clientWidth');
+        var newGraphicElementHeight = await newGraphicElement.getAttribute('clientHeight');
 
         // Then
-        expect(newGraphicElementPosition).toEqual(initialGraphicElementPosition);
+        expect(newGraphicElementWidth).toEqual(initialGraphicElementWidth);
+        expect(newGraphicElementHeight).toEqual(initialGraphicElementHeight);
     });
 });
