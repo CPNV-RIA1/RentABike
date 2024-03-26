@@ -15,16 +15,20 @@ module.exports = class Login {
                     window.location.href = '/home';
                 }
                 else {
+                    window.location.href = '/login';
                     throw new UndefinedLoginException();
                 }
                 break;
             case 'not_authorized':
+                window.location.href = '/login';
                 throw new UnauthorizedLoginException();
                 break;
             case 'unknown':
+                window.location.href = '/login';
                 throw new UnknowLoginException();
                 break;
             default:
+                window.location.href = '/login';
                 throw new UndefinedLoginException();
                 break;
         }
