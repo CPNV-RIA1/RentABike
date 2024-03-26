@@ -4,14 +4,15 @@ const UndefinedLoginException = require('./UndefinedLoginException');
 const UnknowLoginException = require('./UnknownLoginException');
 const UnauthorizedLoginException = require('./UnauthorizedLoginException');
 module.exports = class Login {
-    isLoggedIn;
+    isLoggedIn = false;
     constructor() {
     }
     login(loginRequest = new UndefinedLoginException()) {
         switch (loginRequest.status) {
             case 'connected':
                 if (loginRequest.authResponse.accessToken !== undefined) {
-                    return true;
+                    this.isLoggedIn = true;
+                    window.location.href = '/home';
                 }
                 else {
                     throw new UndefinedLoginException();
@@ -29,6 +30,8 @@ module.exports = class Login {
         }
     }
     logout() {
+        this.isLoggedIn = false;
+        window.location.href = '/';
     }
     getLoginStatus(loginStatus = new UndefinedLoginException()) {
         if (loginStatus.status === 'connected') {
