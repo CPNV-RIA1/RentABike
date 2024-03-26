@@ -1,3 +1,9 @@
+/**
+ * @jest-environment jsdom
+ */
+
+
+
 //initiate facebook sdk login service
 const { before } = require('node:test');
 const Login = require('../Login/login');
@@ -8,16 +14,34 @@ const UndefinedLoginException = require('../Login/UndefinedLoginException');
 
 beforeAll(() => {
     global.FB = new FB();
+    delete window.location;
+    window.location = { reload: jest.fn() };
 })
+after
 
-test('is_user_logged_in_success', () => {
+test('user_logged_in_success', () => {
     //given
+    console.log(window.location.href);
     let login = new Login();
-    login.login(global.FB.login());
+    document.body.innerHTML =
+        '<a id="falogin" class="btn-face m-b-20">' +
+        '<i class="fa fa-facebook-official"></i>' +
+        'Facebook' +
+        '</a>';
+
+    const falogin = document.getElementById('falogin');
+    falogin.addEventListener('click', () => {
+        login.login(global.FB.login());
+    });
+    falogin.click();
+
     //when
     let status = login.getLoginStatus(global.FB.getLoginStatus());
+    console.log(window.location.href);
     //then
     expect(status).toBe(true);
+    expect(window.location.href).toBe('/home');
+
 
 })
 test('is_user_logged_in_failure', () => {
