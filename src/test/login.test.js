@@ -17,7 +17,9 @@ beforeAll(() => {
     delete window.location;
     window.location = { reload: jest.fn() };
 })
-after
+afterAll(() => {
+    window.location = location;
+})
 
 test('user_logged_in_success', () => {
     //given
@@ -33,18 +35,14 @@ test('user_logged_in_success', () => {
     falogin.addEventListener('click', () => {
         login.login(global.FB.login());
     });
-    falogin.click();
-
     //when
+    falogin.click();
     let status = login.getLoginStatus(global.FB.getLoginStatus());
-    console.log(window.location.href);
     //then
     expect(status).toBe(true);
     expect(window.location.href).toBe('/home');
-
-
 })
-test('is_user_logged_in_failure', () => {
+test('user_logged_in_failure', () => {
     //given
     let login = new Login();
     //when
@@ -83,12 +81,22 @@ test('log_user_in_unknown', () => {
 })
 test('log_user_out_success', () => {
     //given
-    let login = new Login(global.FB.login());
+    console.log(window.location.href);
+    let login = new Login();
+    document.body.innerHTML =
+        '<a id="falogout" class="btn-face m-b-20">' +
+        '<i class="fa fa-facebook-official"></i>' +
+        'Déconexion' +
+        '</a>';
+    const falogout = document.getElementById('falogout');
+    falogout.addEventListener('click', () => {
+        login.logout();
+    });
     //when
-    login.login();
-    login.logout();
+    falogout.click();
     //then
-    expect(login.getLoginStatus(global.FB.getLoginStatus())).toBe(false);
+    expect(login.getLoginStatus()).toBe(false);
+    expect(window.location.href).toBe('/');
 })
 
 
