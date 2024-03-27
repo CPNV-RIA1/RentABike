@@ -31,6 +31,7 @@ export default class Login {
                 throw new UnknowLoginException();
                 break;
             default:
+                alert('Unknown error');
                 window.location.href = '../../public_html/form.html';
                 throw new UndefinedLoginException();
                 break;
