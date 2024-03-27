@@ -65,7 +65,7 @@ a:hover {
 /*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
-}
+} 
 
 p {
 	font-family: Poppins-Regular;
@@ -106,15 +106,15 @@ textarea:focus:-moz-placeholder { color:transparent; }
 textarea:focus::-moz-placeholder { color:transparent; }
 textarea:focus:-ms-input-placeholder { color:transparent; }
 
-input::-webkit-input-placeholder { color: #555555;}
-input:-moz-placeholder { color: #555555;}
-input::-moz-placeholder { color: #555555;}
-input:-ms-input-placeholder { color: #555555;}
+input::-webkit-input-placeholder { color: #fff;}
+input:-moz-placeholder { color: #fff;}
+input::-moz-placeholder { color: #fff;}
+input:-ms-input-placeholder { color: #fff;}
 
-textarea::-webkit-input-placeholder { color: #555555;}
-textarea:-moz-placeholder { color: #555555;}
-textarea::-moz-placeholder { color: #555555;}
-textarea:-ms-input-placeholder { color: #555555;}
+textarea::-webkit-input-placeholder { color: #fff;}
+textarea:-moz-placeholder { color: #fff;}
+textarea::-moz-placeholder { color: #fff;}
+textarea:-ms-input-placeholder { color: #fff;}
 
 label {
   display: block;
@@ -142,14 +142,14 @@ iframe {
 .txt1 {
   font-family: Montserrat-SemiBold;
   font-size: 16px;
-  color: #555555;
+  color: #fff;
   line-height: 1.5;
 }
 
 .txt2 {
   font-family: Poppins-Regular;
   font-size: 14px;
-  color: #999999;
+  color: #fff;
   line-height: 1.5;
 }
 
@@ -184,7 +184,7 @@ iframe {
 
 .wrap-login100 {
   width: 680px;
-  background: #fff;
+  background: #212529;
   border-radius: 10px;
   position: relative;
 }
@@ -202,7 +202,7 @@ iframe {
   display: block;
   font-family: Montserrat-Medium;
   font-size: 39px;
-  color: #555555;
+  color: #fff;
   line-height: 1.2;
   text-align: center;
 }
@@ -274,7 +274,7 @@ iframe {
 }
 
 .btn-google {
-  color: #555555;
+  color: #fff;
   background-color: #fff;
 }
 
