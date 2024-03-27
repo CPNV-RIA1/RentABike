@@ -1,4 +1,8 @@
 {
+  "dependencies": {
+    "i18next": "^23.10.0",
+    "selenium-webdriver": "^4.18.1"
+  },
   "scripts": {
     "test": "jest"
   },
