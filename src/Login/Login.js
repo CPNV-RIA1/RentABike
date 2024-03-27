@@ -2,21 +2,22 @@ import UndefinedLoginException from './UndefinedLoginException.js';
 import UnknowLoginException from './UnknownLoginException.js';
 import UnauthorizedLoginException from './UnauthorizedLoginException.js';
 const falogin = document.getElementById('falogin');
-falogin.addEventListener('click', () => {
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '459552226638679',
-            xfbml: true,
-            version: 'v19.0'
-        });
-    };
-
-    console.log(window.fbAsyncInit);
-
-    console.log(FB.getLoginStatus(function (response) {
-        statusChangeCallback(response);
-    }));
+falogin.addEventListener('click', async () => {
     var login = new Login();
+    await FB.login(function (response) {
+        if (response.authResponse) {
+            console.log(response);
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', { fields: 'name, email' }, function (response) {
+                document.getElementById("falogin").innerHTML = "Good to see you, " + response.name + ". i see your email address is " + response.email
+            });
+            login.login(response);
+        } else {
+            console.log('User cancelled login or did not fully authorize.');
+        }
+    });
+
+    console.log(response);
     //login.login();
 });
 export default class Login {
@@ -24,6 +25,7 @@ export default class Login {
     constructor() {
     }
     login(loginRequest = new UndefinedLoginException()) {
+        console.log(loginRequest);
         switch (loginRequest.status) {
             case 'connected':
                 if (loginRequest.authResponse.accessToken !== undefined) {
