@@ -3,8 +3,21 @@ import UnknowLoginException from './UnknownLoginException.js';
 import UnauthorizedLoginException from './UnauthorizedLoginException.js';
 const falogin = document.getElementById('falogin');
 falogin.addEventListener('click', () => {
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '459552226638679',
+            xfbml: true,
+            version: 'v19.0'
+        });
+    };
+
+    console.log(window.fbAsyncInit);
+
+    console.log(FB.getLoginStatus(function (response) {
+        statusChangeCallback(response);
+    }));
     var login = new Login();
-    login.login();
+    //login.login();
 });
 export default class Login {
     isLoggedIn = false;
