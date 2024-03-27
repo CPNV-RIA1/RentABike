@@ -18,20 +18,20 @@ export default class Login {
                     window.location.href = '../../public_html/index.html';
                 }
                 else {
-                    window.location.href = '../../public_html/login.html';
+                    window.location.href = '../../public_html/form.html';
                     throw new UndefinedLoginException();
                 }
                 break;
             case 'not_authorized':
-                window.location.href = '../../public_html/login.html';
+                window.location.href = '../../public_html/form.html';
                 throw new UnauthorizedLoginException();
                 break;
             case 'unknown':
-                window.location.href = '../../public_html/login.html';
+                window.location.href = '../../public_html/form.html';
                 throw new UnknowLoginException();
                 break;
             default:
-                window.location.href = '../../public_html/login.html';
+                window.location.href = '../../public_html/form.html';
                 throw new UndefinedLoginException();
                 break;
         }
