@@ -9,13 +9,13 @@ package model <<Frame>> {
   class i18next {
     + changeLanguage(lng, callback)
   }
-  class login {
-    + login()
+  class Login {
+    + Login()
     + logout()
     + getLoginStatus()
   }
   package exception <<Frame>> {
-    class loginException {
+    class LoginException {
     }
     class UnauthorizedLoginException {
     }
@@ -26,11 +26,11 @@ package model <<Frame>> {
   }
 }
 
-i18n <--> i18next
+i18n ..> i18next
 package view <<Frame>> {
     class index {
     }
-    class loginForm {
+    class LoginForm {
     }
 }
 i18n --> index
@@ -38,12 +38,12 @@ i18n --> index
 package api <<Frame>> {
   class FacebookSDK{}
 }
-loginException <|-- UnauthorizedLoginException 
-loginException <|-- UndefinedLoginException
-loginException <|-- UnknownLoginException
-login ..> UnauthorizedLoginException
-login ..> UndefinedLoginException
-login ..> UnknownLoginException
-login --> FacebookSDK
-loginForm <-- login
+LoginException <|-- UnauthorizedLoginException
+LoginException <|-- UndefinedLoginException
+LoginException <|-- UnknownLoginException
+Login ..> UnauthorizedLoginException
+Login ..> UndefinedLoginException
+Login ..> UnknownLoginException
+Login --> FacebookSDK
+LoginForm <-- Login
 @enduml
