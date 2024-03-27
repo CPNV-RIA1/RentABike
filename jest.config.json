@@ -1,0 +1,17 @@
+{
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "transform": {
+        "^.+\\.jsx?$": "babel-jest",
+        "^.+\\.m?js$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+        "js",
+        "jsx",
+        "json",
+        "node"
+    ],
+    "globals": {
+        "NODE_ENV": "test"
+    }
+}
