@@ -1,9 +1,12 @@
-"use strict";
-const FB = require('../test/Login/FB');
-const UndefinedLoginException = require('./UndefinedLoginException');
-const UnknowLoginException = require('./UnknownLoginException');
-const UnauthorizedLoginException = require('./UnauthorizedLoginException');
-module.exports = class Login {
+import UndefinedLoginException from './UndefinedLoginException.js';
+import UnknowLoginException from './UnknownLoginException.js';
+import UnauthorizedLoginException from './UnauthorizedLoginException.js';
+const falogin = document.getElementById('falogin');
+falogin.addEventListener('click', () => {
+    var login = new Login();
+    login.login();
+});
+export default class Login {
     isLoggedIn = false;
     constructor() {
     }
@@ -12,30 +15,30 @@ module.exports = class Login {
             case 'connected':
                 if (loginRequest.authResponse.accessToken !== undefined) {
                     this.isLoggedIn = true;
-                    window.location.href = '/home';
+                    window.location.href = '../../public_html/index.html';
                 }
                 else {
-                    window.location.href = '/login';
+                    window.location.href = '../../public_html/login.html';
                     throw new UndefinedLoginException();
                 }
                 break;
             case 'not_authorized':
-                window.location.href = '/login';
+                window.location.href = '../../public_html/login.html';
                 throw new UnauthorizedLoginException();
                 break;
             case 'unknown':
-                window.location.href = '/login';
+                window.location.href = '../../public_html/login.html';
                 throw new UnknowLoginException();
                 break;
             default:
-                window.location.href = '/login';
+                window.location.href = '../../public_html/login.html';
                 throw new UndefinedLoginException();
                 break;
         }
     }
     logout() {
         this.isLoggedIn = false;
-        window.location.href = '/';
+        window.location.href = '../../public_html/index.html';
     }
     getLoginStatus(loginStatus = new UndefinedLoginException()) {
         if (loginStatus.status === 'connected') {

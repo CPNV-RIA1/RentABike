@@ -1,2 +1,2 @@
-module.exports = class LoginException extends Error {
+export default class LoginException extends Error {
 }
