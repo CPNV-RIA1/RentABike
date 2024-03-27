@@ -2,15 +2,13 @@
  * @jest-environment jsdom
  */
 
-
-
 //initiate facebook sdk login service
 const { before } = require('node:test');
-const Login = require('../Login/login');
+import Login from '../Login/login'; // Importing the default export
 const FB = require('./Login/FB');
-const UnauthorizedLoginException = require('../Login/UnauthorizedLoginException');
-const UnknownLoginException = require('../Login/UnknownLoginException');
-const UndefinedLoginException = require('../Login/UndefinedLoginException');
+import UnauthorizedLoginException from '../Login/UnauthorizedLoginException';
+import UnknownLoginException from '../Login/UnknownLoginException';
+import UndefinedLoginException from '../Login/UndefinedLoginException';
 
 beforeAll(() => {
     global.FB = new FB();
