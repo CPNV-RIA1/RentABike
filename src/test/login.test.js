@@ -40,7 +40,7 @@ test('user_logged_in_success', () => {
     let status = login.getLoginStatus(global.FB.getLoginStatus());
     //then
     expect(status).toBe(true);
-    expect(window.location.href).toBe('/home');
+    expect(window.location.href).toBe('../../public_html/index.html');
 })
 test('user_logged_in_failure', () => {
     //given
@@ -96,7 +96,7 @@ test('log_user_out_success', () => {
     falogout.click();
     //then
     expect(login.getLoginStatus()).toBe(false);
-    expect(window.location.href).toBe('/');
+    expect(window.location.href).toBe('../../public_html/index.html');
 })
 
 
