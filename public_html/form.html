@@ -63,7 +63,21 @@
 			font-size: 24px;
 		}
 	</style>
+	<!--===============================================================================================-->
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 
+	<script>
+
+		window.fbAsyncInit = function () {
+			console.log("fbAsyncInit");
+			FB.init({
+				appId: '459552226638679',
+				xfbml: true,
+				version: 'v19.0'
+			});
+		};
+
+	</script>
 </body>
 
 </html>
