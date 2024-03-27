@@ -48,27 +48,23 @@
 			</div>
 		</div>
 	</div>
-
-
-	<div id="dropDownSelect1"></div>
-	<!--===============================================================================================-->
-	<script src="assets/vendors/animsition/js/animsition.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="assets/vendors/bootstrap/js/popper.js"></script>
-	<script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="assets/vendors/select2/select2.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="assets/vendors/daterangepicker/moment.min.js"></script>
-	<script src="assets/vendors/daterangepicker/daterangepicker.js"></script>
-	<!--===============================================================================================-->
-	<script src="assets/vendors/countdowntime/countdowntime.js"></script>
-	<!--===============================================================================================-->
-	<script src="assets/js/main.js"></script>
 	<!--===============================================================================================-->
 	<script src="../src/Login/Login.js" defer type="module"></script>
 	<!--===============================================================================================-->
 	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+	<script>
+
+		window.fbAsyncInit = function () {
+			console.log("fbAsyncInit");
+			FB.init({
+				appId: '459552226638679',
+				xfbml: true,
+				version: 'v19.0'
+			});
+		};
+
+	</script>
 </body>
 
 </html>
