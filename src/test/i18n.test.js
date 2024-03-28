@@ -6,6 +6,19 @@ describe('localisation language change', function() {
     driver.get('http://localhost:8000/public_html/index.html');
     driver.manage().setTimeouts({implicit: 500});
 
+    it('should change the language of the page', async function() {
+        // Given
+        let dropdownElement = driver.findElement(By.id('languageSelect'));
+        const dropdown = new Select(dropdownElement)
+
+        // When
+        await dropdown.selectByVisibleText("DE");
+        await driver.manage().setTimeouts({implicit: 500});
+
+        // Then
+        expect(await driver.findElement(By.id('workingTime')).getText()).toEqual("Arbeitszeiten");
+    });
+
     it('should maintain user-entered content', async function() {
         //Given
         let userInputElement = driver.findElement(By.id('userName'));
