@@ -59,4 +59,21 @@ describe('Login Service', () => {
         expect(window.location.href).toBe('../../public_html/form.html');
     });
 
+    it('should log out a user successfully', () => {
+        // Given
+        document.body.innerHTML =
+            '<a id="falogout" class="btn-face m-b-20">' +
+            '<i class="fa fa-facebook-official"></i>' +
+            'Déconnexion' +
+            '</a>';
+        const falogout = document.getElementById('falogout');
+
+        // When
+        falogout.click();
+
+        // Then
+        expect(connector.getLoginStatus()).toBe(false);
+        expect(window.location.href).toBe('../../public_html/index.html');
+    });
+
 });
