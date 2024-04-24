@@ -39,5 +39,24 @@ describe('Login Service', () => {
         expect(status).toBe(true);
         expect(window.location.href).toBe('../../public_html/index.html');
     });
+    it('should log in a user unsuccessfully', () => {
+        // Given
+        document.body.innerHTML =
+            '<a id="falogin" class="btn-face m-b-20">' +
+            '<i class="fa fa-facebook-official"></i>' +
+            'Facebook' +
+            '</a>';
+
+        const falogin = document.getElementById('falogin');
+        falogin.addEventListener('click', () => {
+            connector.login(global.FB.login());
+        });
+        //when
+        falogin.click();
+        let status = connector.getLoginStatus(global.FB.getLoginStatus());
+        //then
+        expect(status).toBe(false);
+        expect(window.location.href).toBe('../../public_html/form.html');
+    });
 
 });
